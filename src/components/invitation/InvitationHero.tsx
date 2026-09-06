@@ -28,6 +28,18 @@ export function InvitationHero({ backdropRef }: Props) {
       <FloralFrame pale reveal />
 
       <div className="hero__inner">
+        {wedding.bismillah.arabic ? (
+          <p className="hero__bismillah" lang="ar" dir="rtl" data-reveal>
+            {wedding.bismillah.arabic}
+          </p>
+        ) : null}
+
+        {wedding.bismillah.translation ? (
+          <p className="hero__bismillah-translation" data-reveal>
+            {wedding.bismillah.translation}
+          </p>
+        ) : null}
+
         <p className="hero__eyebrow" data-reveal>{wedding.invitationLine}</p>
 
         <h1 className="hero__names" data-reveal>
