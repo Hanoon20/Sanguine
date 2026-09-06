@@ -12,6 +12,16 @@ export interface StoryChapter {
 }
 
 export const wedding = {
+  /**
+   * The opening line of the invitation. Clear `arabic` to remove it entirely.
+   * `translation` is optional and shown small beneath; left empty the hero
+   * keeps to the Arabic alone, which is how it usually sits on stationery.
+   */
+  bismillah: {
+    arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+    translation: '',
+  },
+
   groom: 'Hamdhan',
   bride: 'Sara',
   monogram: 'H&S',
