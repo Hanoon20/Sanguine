@@ -21,8 +21,14 @@
   --ink-soft: #5c4a44;
 
   /* Type ---------------------------------------------------------------- */
+  /* Display: Bodoni. Very high stroke contrast, the face fashion houses set
+     their names in — it carries weight without ever looking heavy. */
+  --display: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
+  /* Body: kept lighter and rounder so paragraphs stay easy to read. */
   --serif: 'Cormorant Garamond', 'Times New Roman', serif;
-  --script: 'Pinyon Script', 'Cormorant Garamond', cursive;
+  /* Script: fuller and more flowing than an engraved copperplate, which is
+     what gives the names presence at hero size. */
+  --script: 'Great Vibes', 'Cormorant Garamond', cursive;
   --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
   --arabic: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
 
