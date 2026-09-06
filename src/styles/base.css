@@ -24,6 +24,7 @@
   --serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --script: 'Pinyon Script', 'Cormorant Garamond', cursive;
   --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  --arabic: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
 
   /* Rhythm -------------------------------------------------------------- */
   --gutter: clamp(20px, 6vw, 64px);
