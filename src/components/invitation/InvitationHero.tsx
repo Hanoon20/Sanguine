@@ -18,14 +18,22 @@ interface Props {
  * with the viewport.
  */
 export function InvitationHero({ backdropRef }: Props) {
+  /* A custom photograph comes as a single file; the bundled one carries an
+     AVIF copy, which the stylesheet prefers where the browser supports it. */
   const cover = wedding.heroImage || photos.cover;
+  const coverAvif = wedding.heroImage || photos.coverAvif;
 
   return (
     <header className="hero" id="top">
       <div
         className="hero__backdrop"
         ref={backdropRef}
-        style={{ backgroundImage: `url(${cover})` }}
+        style={
+          {
+            '--cover': `url(${cover})`,
+            '--cover-avif': `url(${coverAvif})`,
+          } as React.CSSProperties
+        }
         aria-hidden="true"
       />
       <div className="hero__scrim" aria-hidden="true" />

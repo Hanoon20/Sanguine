@@ -9,10 +9,15 @@ import FloralFrame from './FloralFrame';
  */
 export function Gallery() {
   const plates = wedding.gallery
-    .map((item, i) => ({
-      caption: item.caption,
-      image: item.image || (i === 0 ? wedding.heroImage || photos.cover : ''),
-    }))
+    .map((item, i) => {
+      const bundled = !item.image && i === 0 && !wedding.heroImage;
+      return {
+        caption: item.caption,
+        image: item.image || (i === 0 ? wedding.heroImage || photos.cover : ''),
+        /* The bundled cover also has a smaller AVIF encoding. */
+        avif: bundled ? photos.coverAvif : '',
+      };
+    })
     .filter((item) => item.image);
 
   if (plates.length === 0) return null;
@@ -27,7 +32,10 @@ export function Gallery() {
         {plates.map((item) => (
           <figure className="plate" key={item.caption} data-scroll>
             <div className="plate__image">
-              <img src={item.image} alt={item.caption} loading="lazy" decoding="async" />
+              <picture>
+                {item.avif ? <source srcSet={item.avif} type="image/avif" /> : null}
+                <img src={item.image} alt={item.caption} loading="lazy" decoding="async" />
+              </picture>
             </div>
             <figcaption className="plate__caption">{item.caption}</figcaption>
           </figure>

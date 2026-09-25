@@ -12,6 +12,9 @@
          the first paint. Text shows in the fallback face until they land. -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Amiri&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Cormorant+Garamond:ital@0;1&family=Great+Vibes&family=Jost:wght@300;400&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Cormorant+Garamond:ital@0;1&family=Great+Vibes&family=Jost:wght@300;400&display=swap" media="print" onload="this.media='all'" />
+    <!-- The cover photo is otherwise only discovered once the script has run.
+         Browsers without AVIF skip this and fetch the WebP as before. -->
+    <link rel="preload" as="image" type="image/avif" href="/src/assets/hero.avif" fetchpriority="high" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Cormorant+Garamond:ital@0;1&family=Great+Vibes&family=Jost:wght@300;400&display=swap" /></noscript>
   </head>
   <body>
