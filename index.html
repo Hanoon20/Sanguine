@@ -8,10 +8,11 @@
     <meta name="description" content="A wedding invitation from Hamdhan and Sara." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Only the weights the styles actually use, loaded without blocking
+         the first paint. Text shows in the fallback face until they land. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Amiri&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Cormorant+Garamond:ital@0;1&family=Great+Vibes&family=Jost:wght@300;400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Cormorant+Garamond:ital@0;1&family=Great+Vibes&family=Jost:wght@300;400&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Cormorant+Garamond:ital@0;1&family=Great+Vibes&family=Jost:wght@300;400&display=swap" /></noscript>
   </head>
   <body>
     <div id="root"></div>

@@ -184,6 +184,16 @@ button {
   background-size: 180px 180px;
 }
 
+/* Once the envelope has gone, the fixed layers that blend with what is
+   beneath them are retired. The warm spill is already hidden under the dawn
+   layer, and the grain is barely visible on ivory — but a blended, fixed,
+   full-screen layer makes the browser repaint the whole viewport on every
+   frame of scrolling, which is where the stutter on phones came from. */
+.shell[data-finished='true'] .atmosphere::before,
+.shell[data-finished='true'] .atmosphere__grain {
+  display: none;
+}
+
 /* Ambient motes. Six of them, so it reads as air rather than as a particle
    system. They stop once the opening finishes. */
 .motes {
