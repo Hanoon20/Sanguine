@@ -31,6 +31,7 @@
   position: absolute;
   inset: -8%;
   z-index: -2;
+  background-image: var(--cover);
   background-position: center 38%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -55,6 +56,14 @@
     #000 var(--reveal),
     transparent calc(var(--reveal) + 16%)
   );
+}
+
+/* Guarded, because an unsupported image-set() built from custom properties
+   would not fall back to the line above — it would leave no picture at all. */
+@supports (background-image: image-set(url('x.avif') type('image/avif'))) {
+  .hero__backdrop {
+    background-image: image-set(var(--cover-avif) type('image/avif'), var(--cover) type('image/webp'));
+  }
 }
 
 /* The mask only exists for the opening. Afterwards it covers everything, so
@@ -606,6 +615,11 @@
 }
 .plate:nth-child(3) .plate__image {
   aspect-ratio: 1;
+}
+
+.plate__image picture {
+  display: block;
+  height: 100%;
 }
 
 .plate__image img {
