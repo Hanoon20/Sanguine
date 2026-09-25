@@ -28,6 +28,15 @@ const FLAP_ANGLES = {
   bottom: 154,
 } as const;
 
+/**
+ * How long the open envelope rests with the names showing before the camera
+ * pushes through. The names are fully uncovered at about 1.3s; this is the
+ * time given to actually read them. Everything after it moves with it.
+ */
+const NAME_HOLD = 1.6;
+/** The push and photograph originally followed the flaps with no pause. */
+const AFTER = NAME_HOLD - 0.1;
+
 export interface TimelineOptions {
   onComplete?: () => void;
   /** Fires once the page beneath is legible, so it can be handed over. */
@@ -101,30 +110,29 @@ export function createEnvelopeOpeningTimeline(
   tl.addLabel('light', 1.05);
   addGoldenLight(tl, el, 1.05);
 
-  /* A drift under the opening, then the push, which begins as the last flap
-     settles. `hold` is a knob rather than a beat: raise it to pause on the
-     open envelope before leaving it. */
+  /* A drift under the opening, a rest on the open envelope while the names
+     are read, then the push through into the photograph. */
   tl.addLabel('camera', 0.6);
   addCameraPush(tl, el, 0.6, {
     drift: 1.45,
     driftTo: 1.12,
-    hold: 0.1,
-    holdTo: 1.13,
+    hold: NAME_HOLD,
+    holdTo: 1.15,
     push: 1.1,
     pushTo: 2.9,
   });
 
   tl.to(el.light, { opacity: 0.62, duration: 0.5, ease: 'sine.inOut' }, 1.5)
-    .to(el.light, { opacity: 1, duration: 0.6, ease: 'sine.inOut' }, 2.05);
+    .to(el.light, { opacity: 1, duration: 0.6, ease: 'sine.inOut' }, 2.05 + AFTER);
 
   tl.to(el.shadow, { opacity: 0, duration: 0.5, ease: 'sine.in' }, 1.7);
 
-  tl.addLabel('photo', 2.2);
-  addPhotoReveal(tl, el, 2.2);
-  tl.call(() => onCardVisible?.(), undefined, 3.7);
+  tl.addLabel('photo', 2.2 + AFTER);
+  addPhotoReveal(tl, el, 2.2 + AFTER);
+  tl.call(() => onCardVisible?.(), undefined, 3.7 + AFTER);
 
-  tl.addLabel('text', 3.95);
-  addTextReveal(tl, el, 3.95);
+  tl.addLabel('text', 3.95 + AFTER);
+  addTextReveal(tl, el, 3.95 + AFTER);
 
   return tl;
 }

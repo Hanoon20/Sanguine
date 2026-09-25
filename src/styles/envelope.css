@@ -422,7 +422,7 @@
 
 .seal__mono {
   font-family: var(--display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(18px, 5.1vw, 26px);
   letter-spacing: 0.02em;
   color: #8a744a;
@@ -534,7 +534,7 @@
 
 .envelope__message-name {
   font-family: var(--display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(17px, 5vw, 26px);
   line-height: 1.05;
   letter-spacing: 0.18em;
