@@ -21,15 +21,16 @@
   --ink-soft: #5c4a44;
 
   /* Type ---------------------------------------------------------------- */
-  /* Display: Bodoni. Very high stroke contrast, the face fashion houses set
-     their names in — it carries weight without ever looking heavy. */
-  --display: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
-  /* Body: kept lighter and rounder so paragraphs stay easy to read. */
-  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
-  /* Script: fuller and more flowing than an engraved copperplate, which is
-     what gives the names presence at hero size. */
-  --script: 'Great Vibes', 'Cormorant Garamond', cursive;
-  --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  /* Display: Cormorant. Tall, fine and high-contrast — the look of engraved
+     stationery, with a true italic for the small joining words. */
+  --display: 'Cormorant', 'Cormorant Garamond', 'Times New Roman', serif;
+  /* Body: EB Garamond. A warm book face that stays easy to read in
+     paragraphs while sitting comfortably beside the display cut. */
+  --serif: 'EB Garamond', 'Times New Roman', serif;
+  /* Script: Pinyon Script. A classic copperplate hand for the names. */
+  --script: 'Pinyon Script', 'EB Garamond', cursive;
+  /* Labels: Josefin Sans, spaced wide in capitals, as on printed cards. */
+  --sans: 'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
   --arabic: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
 
   /* Rhythm -------------------------------------------------------------- */
@@ -50,6 +51,9 @@ body {
   background: var(--wine-950);
   color: var(--ink);
   font-family: var(--serif);
+  /* Both serifs default to old-style figures; dates and the countdown read
+     more evenly with lining ones. */
+  font-variant-numeric: lining-nums;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

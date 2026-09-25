@@ -149,14 +149,14 @@
   display: block;
   font-family: var(--display);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.3em;
   color: var(--gold-hi);
 }
 
 .hero__meta {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(14px, 4.1vw, 20px);
   letter-spacing: 0.12em;
   text-indent: 0.12em;
@@ -200,7 +200,7 @@
 
 .hero__event-name {
   font-family: var(--display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(19px, 5.2vw, 25px);
   color: var(--ivory);
 }
@@ -360,7 +360,7 @@
 
 .section__title {
   font-family: var(--display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(25px, 6.6vw, 38px);
   letter-spacing: 0.02em;
   margin: 0 0 clamp(24px, 6vw, 40px);
@@ -393,7 +393,7 @@
 .countdown__value {
   display: block;
   font-family: var(--display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(22px, 8vw, 44px);
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -460,7 +460,7 @@
 .chapter__year {
   font-family: var(--display);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(30px, 9vw, 44px);
   line-height: 1;
   color: rgba(181, 142, 66, 0.55);
@@ -537,7 +537,7 @@
 
 .event__name {
   font-family: var(--display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(20px, 5.4vw, 27px);
   margin: 0;
   color: var(--wine-800);
@@ -610,10 +610,15 @@
   overflow: hidden;
 }
 
-.plate:nth-child(2) .plate__image {
-  aspect-ratio: 1;
+/* On a phone, an odd number of photographs would leave one alone on its
+   row, so the first one takes the whole width and the rest pair up. */
+.gallery:not(.gallery--single) .plate:first-child:nth-last-child(odd) {
+  grid-column: 1 / -1;
 }
-.plate:nth-child(3) .plate__image {
+.gallery:not(.gallery--single) .plate:first-child:nth-last-child(odd) .plate__image {
+  aspect-ratio: 4 / 3;
+}
+.gallery:not(.gallery--single) .plate:not(:first-child) .plate__image {
   aspect-ratio: 1;
 }
 
@@ -637,9 +642,23 @@
   padding-top: 10px;
 }
 
+/* Wider screens: one row, every plate the same shape. Scoped away from the
+   single-photo layout, which it used to override — that is what shrank a
+   lone photograph to a small tile at the left of the section. */
 @media (min-width: 720px) {
-  .gallery {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .gallery:not(.gallery--single) {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  .gallery:not(.gallery--single) .plate:first-child:nth-last-child(odd) {
+    grid-column: auto;
+  }
+  .gallery:not(.gallery--single) .plate .plate__image,
+  .gallery:not(.gallery--single) .plate:first-child:nth-last-child(odd) .plate__image {
+    aspect-ratio: 4 / 5;
   }
 }
 
@@ -649,7 +668,7 @@
 
 .place__name {
   font-family: var(--display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(24px, 6.4vw, 34px);
   color: var(--wine-800);
   margin: 0;
@@ -827,7 +846,7 @@
 
 .footer__mono {
   font-family: var(--display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(17px, 4.6vw, 22px);
   letter-spacing: 0.34em;
   text-indent: 0.34em;
@@ -837,7 +856,7 @@
 
 .footer__names {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(17px, 4.6vw, 22px);
   letter-spacing: 0.14em;
   text-indent: 0.14em;
@@ -853,7 +872,7 @@
 
 .footer__meta {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(14px, 3.8vw, 17px);
   color: rgba(238, 222, 194, 0.82);
   margin: 10px 0 0;
