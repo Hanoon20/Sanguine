@@ -656,7 +656,9 @@
   .gallery:not(.gallery--single) .plate:first-child:nth-last-child(odd) {
     grid-column: auto;
   }
-  .gallery:not(.gallery--single) .plate .plate__image,
+  /* :nth-child(n) matches every plate; it is there to outrank the phone
+     rule's :not(:first-child), which would otherwise keep them square. */
+  .gallery:not(.gallery--single) .plate:nth-child(n) .plate__image,
   .gallery:not(.gallery--single) .plate:first-child:nth-last-child(odd) .plate__image {
     aspect-ratio: 4 / 5;
   }

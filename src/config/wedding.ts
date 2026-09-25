@@ -72,10 +72,13 @@ export const wedding = {
   /**
    * Photographs. Only entries with an `image` are shown, so the gallery never
    * displays empty plates while you are still collecting pictures. Import the
-   * files in Gallery.tsx and pass them here.
+   * files in Gallery.tsx and pass them here. Left empty, an entry uses the
+   * bundled photograph in the same position (see assets/photos.ts).
    */
   gallery: [
     { caption: 'Hamdhan and Sara', image: '' },
+    { caption: 'Sealed with love', image: '' },
+    { caption: 'An evening to remember', image: '' },
   ] as { caption: string; image: string }[],
 
   location: {
