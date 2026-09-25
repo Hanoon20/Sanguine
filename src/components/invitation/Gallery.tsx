@@ -8,14 +8,15 @@ import FloralFrame from './FloralFrame';
  * single picture it becomes one full-width plate rather than a lonely tile.
  */
 export function Gallery() {
+  /* An entry without its own `image` falls back to the bundled photograph in
+     the same position, which also carries a smaller AVIF encoding. */
   const plates = wedding.gallery
     .map((item, i) => {
-      const bundled = !item.image && i === 0 && !wedding.heroImage;
+      const bundled = item.image ? undefined : photos.gallery[i];
       return {
         caption: item.caption,
-        image: item.image || (i === 0 ? wedding.heroImage || photos.cover : ''),
-        /* The bundled cover also has a smaller AVIF encoding. */
-        avif: bundled ? photos.coverAvif : '',
+        image: item.image || bundled?.webp || '',
+        avif: bundled?.avif ?? '',
       };
     })
     .filter((item) => item.image);
@@ -29,8 +30,8 @@ export function Gallery() {
         A few of ours
       </h2>
       <div className={plates.length === 1 ? 'gallery gallery--single' : 'gallery'}>
-        {plates.map((item) => (
-          <figure className="plate" key={item.caption} data-scroll>
+        {plates.map((item, i) => (
+          <figure className="plate" key={i} data-scroll>
             <div className="plate__image">
               <picture>
                 {item.avif ? <source srcSet={item.avif} type="image/avif" /> : null}

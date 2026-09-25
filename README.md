@@ -29,8 +29,9 @@ RSVP details. Nothing about the wedding is hard-coded in a component.
 
 Two optional fields:
 
-- `heroImage` — a path to a photograph. Left empty, the gallery shows toned
-  paper plates instead.
+- `heroImage` — a path to a photograph. Left empty, the bundled cover in
+  `src/assets/cover.{avif,webp}` is used. Gallery entries without an `image`
+  likewise use the bundled photographs listed in `src/assets/photos.ts`.
 - `sealSound` — a short audio file. Left empty, the opening is silent. It never
   autoplays and the animation never waits on it.
 
