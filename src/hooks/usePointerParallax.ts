@@ -27,6 +27,8 @@ export function usePointerParallax(
     let x = 0;
     let y = 0;
 
+    /* Runs only while the envelope is still catching up with the pointer,
+       and goes quiet once it has settled, so an idle page costs nothing. */
     const loop = () => {
       x += (targetX - x) * 0.06;
       y += (targetY - y) * 0.06;
@@ -34,16 +36,17 @@ export function usePointerParallax(
       el.style.setProperty('--py', `${(y * amount).toFixed(2)}px`);
       el.style.setProperty('--rx', `${(-y * tilt).toFixed(2)}deg`);
       el.style.setProperty('--ry', `${(x * tilt).toFixed(2)}deg`);
-      frame = requestAnimationFrame(loop);
+      const settled = Math.abs(targetX - x) < 0.001 && Math.abs(targetY - y) < 0.001;
+      frame = settled ? 0 : requestAnimationFrame(loop);
     };
 
     const onMove = (e: PointerEvent) => {
       targetX = (e.clientX / window.innerWidth) * 2 - 1;
       targetY = (e.clientY / window.innerHeight) * 2 - 1;
+      if (!frame) frame = requestAnimationFrame(loop);
     };
 
     window.addEventListener('pointermove', onMove, { passive: true });
-    frame = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener('pointermove', onMove);

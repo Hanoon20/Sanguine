@@ -36,6 +36,9 @@
   background-repeat: no-repeat;
   filter: blur(5px) saturate(1.06) brightness(1.07);
   transform-origin: 50% 46%;
+  /* Kept on its own layer so the blur is rasterised once and then just moved
+     while scrolling, instead of being recomputed on every frame. */
+  will-change: transform;
   /* The picture opens out of the point the camera is travelling toward. The
      timeline drives --reveal from nothing to past the corners; the value here
      is the finished state, so the page is whole without JavaScript. */
@@ -52,6 +55,13 @@
     #000 var(--reveal),
     transparent calc(var(--reveal) + 16%)
   );
+}
+
+/* The mask only exists for the opening. Afterwards it covers everything, so
+   drop it rather than keep compositing it. */
+.shell[data-finished='true'] .hero__backdrop {
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 /* Warm shade over the photograph. Without it the cream of the fabric and the
@@ -248,13 +258,11 @@
     opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 1.05s cubic-bezier(0.22, 0.61, 0.36, 1);
   transition-delay: calc(var(--i, 0) * 0.12s);
-  will-change: transform, opacity;
 }
 
 .site[data-scroll-ready='true'] [data-scroll].is-visible {
   opacity: 1;
   transform: none;
-  will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

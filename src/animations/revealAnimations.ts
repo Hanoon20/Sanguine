@@ -154,7 +154,7 @@ export function addPhotoReveal(tl: gsap.core.Timeline, e: RevealElements, at: nu
     .fromTo(e.scrim, { opacity: 0 }, { opacity: 1, duration: 1.4, ease: 'sine.inOut' }, at + 1.25)
     .to(e.scene, { opacity: 0, duration: 0.7, ease: 'sine.inOut' }, at + 1.35)
     .set(e.scene, { display: 'none' })
-    .set([e.camera, e.backdrop, e.light, e.inner], { willChange: 'auto' });
+    .set([e.camera, e.light, e.inner], { willChange: 'auto' });
 
   return tl;
 }

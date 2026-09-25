@@ -69,7 +69,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="shell" ref={atmosphere} style={textureVars}>
+    <div className="shell" ref={atmosphere} style={textureVars} data-finished={finished}>
       <div className="atmosphere" aria-hidden="true" />
       <div className="atmosphere__veil" aria-hidden="true" />
 

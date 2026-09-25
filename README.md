@@ -5,7 +5,7 @@ wax. Pressing the seal plays a single five-and-a-half second sequence: the wax
 breaks, the four flaps turn back on their folds, warm light rises out of the
 pocket, the invitation is drawn up, and the card becomes the website.
 
-Built with React, TypeScript, GSAP and CSS 3D. No Three.js — the envelope is
+Built with React-style components (served by Preact for a smaller bundle), TypeScript, GSAP and CSS 3D. No Three.js — the envelope is
 DOM and transforms only, so it stays fast on a phone.
 
 ## Running it
